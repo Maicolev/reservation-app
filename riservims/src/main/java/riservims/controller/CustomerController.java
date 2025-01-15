@@ -1,5 +1,6 @@
 package riservims.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,9 @@ import riservims.service.CustomerService;
 
 import java.util.List;
 
+@Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/api/customers")
 public class CustomerController {
 
@@ -22,6 +25,7 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+        log.info("Create customer: {}", customer);
         Customer savedCustomer = customerService.saveCustomer(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
     }

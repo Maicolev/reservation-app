@@ -1,13 +1,4 @@
 spring:
-    mvc:
-        view:
-            prefix: /WEB-INF/views/
-            suffix: .jsp
-    servlet:
-        jsp:
-            registered: true
-            init-parameters:
-                development: true
     datasource:
         url: jdbc:mysql://localhost:3306/RISERVI
         username: newuser

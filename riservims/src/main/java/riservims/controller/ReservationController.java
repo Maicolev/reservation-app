@@ -17,6 +17,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/api/reservations")
 public class ReservationController {
 
