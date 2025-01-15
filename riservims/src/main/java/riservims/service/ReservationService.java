@@ -11,8 +11,8 @@ import riservims.repository.CustomerRepository;
 import riservims.repository.ReservationRepository;
 import riservims.repository.ScheduleRepository;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -33,61 +33,67 @@ public class ReservationService {
     // -2 schedule busy
     // -3 not found customer
     @Transactional
-    public BigDecimal createReservation(Reservation reservation, Schedule schedule, Customer customer) {
-        log.info("Entre el service");
+    public Map<Integer, Double> createReservation(Reservation reservation, Schedule schedule, Customer customer) {
+        log.info("into service");
 
-        // 1.Schedule validate and create
-        Schedule savedSchedule = scheduleRepository.findById(schedule.getId())
-                .orElseGet(() -> {
-                    log.info("Entre crea schedule");
-                    schedule.setIsAvailable(true);
-                    return scheduleRepository.save(schedule);
-                });
-
-        if (!savedSchedule.getIsAvailable()) {
-            log.info("Schedule no disponible");
-            return BigDecimal.valueOf(-2);
-        }
-
-        savedSchedule.setIsAvailable(false);
-        scheduleRepository.save(savedSchedule);
-        scheduleRepository.flush();
-
-        // 2. Client validate
-        Customer savedCustomer = customerRepository.findById(customer.getId())
-                .orElseGet(() -> {
-                    log.info("Entre crea customer");
-                    //return customerRepository.save(customer);
-                    return null;
-                });
-        if (savedCustomer == null) return BigDecimal.valueOf(-3);
-
-        customerRepository.flush();
-
-        log.info(String.valueOf(savedCustomer.getId()));
-        log.info(String.valueOf(savedSchedule.getId()));
+        log.info(String.valueOf(customer.getId()));
+        log.info(String.valueOf(customer.getId()));
         log.info(String.valueOf(reservation.getReservationType().getId()));
         log.info(String.valueOf(reservation.getNumberOfPeople()));
-        // 3. sp call
-        BigDecimal discount = BigDecimal.valueOf(reservationRepository.callCreateReservationProcedure(
-                savedCustomer.getId(),
-                savedSchedule.getId(),
+
+        // 1. sp call
+        return reservationRepository.callCreateReservationProcedure(
+                customer,
+                schedule,
                 reservation.getReservationType().getId(),
                 reservation.getNumberOfPeople()
-        ));
-
-        // 4. discount check
-        log.info("Descuento obtenido: " + discount);
-        if (discount.compareTo(BigDecimal.ZERO) >= 0) {
-            reservation.setDiscountApplied(discount);
-            reservation.setSchedule(savedSchedule);
-            return discount;
-        } else {
-            throw new IllegalStateException("Cannot create reservation.");
-        }
+        );
     }
 
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
+    }
+
+    @Transactional
+    public void updateReservation(Integer id, Reservation reservation, Schedule schedule, Customer customer) {
+        log.info("Updating reservation with ID: {}", id);
+        Reservation existingReservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
+
+        // Actualización de los datos de la reservación
+        existingReservation.setNumberOfPeople(reservation.getNumberOfPeople());
+        existingReservation.setReservationType(reservation.getReservationType());
+
+        // Actualización del cliente si es necesario
+        if (customer != null) {
+            Customer existingCustomer = customerRepository.findById(customer.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Customer not found with ID: " + customer.getId()));
+            existingReservation.setCustomer(existingCustomer);
+        }
+
+        // Actualización del horario si es necesario
+        if (schedule != null) {
+            Schedule existingSchedule = scheduleRepository.findById(schedule.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Schedule not found with ID: " + schedule.getId()));
+            existingReservation.setSchedule(existingSchedule);
+        }
+
+        reservationRepository.save(existingReservation);
+        log.info("Reservation updated successfully.");
+    }
+
+    @Transactional
+    public void deleteReservation(Integer id) {
+        log.info("Deleting reservation with ID: {}", id);
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
+
+        // Liberar el horario al eliminar la reservación
+        Schedule schedule = reservation.getSchedule();
+        schedule.setIsAvailable(true);
+        scheduleRepository.save(schedule);
+
+        reservationRepository.delete(reservation);
+        log.info("Reservation deleted successfully.");
     }
 }
