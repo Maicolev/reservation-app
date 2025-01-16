@@ -1,0 +1,56 @@
+<form (ngSubmit)="createReservation()">
+    <!-- Customer Data -->
+    <h3>Customer Information</h3>
+    <div>
+        <label for="id">Identification</label>
+        <input id="id" [(ngModel)]="reservationRequest.reservation.customer.id" name="id" required>
+      </div>
+    <div>
+      <label for="firstName">First Name</label>
+      <input id="firstName" [(ngModel)]="reservationRequest.reservation.customer.firstName" name="firstName" required>
+    </div>
+    <div>
+      <label for="lastName">Last Name</label>
+      <input id="lastName" [(ngModel)]="reservationRequest.reservation.customer.lastName" name="lastName" required>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" [(ngModel)]="reservationRequest.reservation.customer.email" name="email" type="email" required>
+    </div>
+    <div>
+      <label for="phoneNumber">Phone Number</label>
+      <input id="phoneNumber" [(ngModel)]="reservationRequest.reservation.customer.phoneNumber" name="phoneNumber" type="tel">
+    </div>
+
+    <!-- Reservation Data -->
+    <h3>Reservation Details</h3>
+    <div>
+      <label for="reservationDate">Reservation Date</label>
+      <input id="reservationDate" [(ngModel)]="reservationRequest.reservation.reservationDate" name="reservationDate" type="date" required [readonly]="true">
+    </div>
+    <div>
+      <label for="numberOfPeople">Number of People</label>
+      <input id="numberOfPeople" [(ngModel)]="reservationRequest.reservation.numberOfPeople" name="numberOfPeople" type="number" required>
+    </div>
+    <div>
+      <label for="discountApplied">Discount Applied</label>
+      <input id="discountApplied" [(ngModel)]="reservationRequest.reservation.discountApplied" name="discountApplied" type="number">
+    </div>
+
+    <!-- Schedule Data -->
+    <h3>Schedule Details</h3>
+    <div>
+      <label for="scheduleDate">Schedule Date</label>
+      <input id="scheduleDate" [(ngModel)]="reservationRequest.reservation.schedule.scheduleDate" name="scheduleDate" type="date" required>
+    </div>
+    <div>
+      <label for="startTime">Start Time</label>
+      <input id="startTime" [(ngModel)]="reservationRequest.reservation.schedule.startTime" name="startTime" type="time" required>
+    </div>
+    <div>
+      <label for="endTime">End Time</label>
+      <input id="endTime" [(ngModel)]="reservationRequest.reservation.schedule.endTime" name="endTime" type="time" required>
+    </div>
+
+    <button type="submit">Submit Reservation</button>
+  </form>

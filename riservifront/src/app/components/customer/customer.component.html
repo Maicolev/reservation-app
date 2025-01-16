@@ -1,0 +1,47 @@
+<div class="container">
+  <h2 class="mat-headline text-center">Customers</h2>
+
+    <ul class="mat-elevation-z8 mt-4">
+      @for(customer of customers; track customer){
+        <li class="list-group-item mat-list-item">{{ customer.firstName }} {{ customer.lastName }} - {{ customer.email }}</li>
+      }
+    </ul>
+  </div>
+
+<form (submit)="addCustomer(id.value, firstName.value, lastName.value, email.value, phone.value, customerType.value)" class="mat-elevation-z8 p-3" style="background-color: #f5f5f5; border-radius: 8px;">
+  <div class="mat-form-field w-100">
+    <mat-label>Identification</mat-label>
+    <input matInput type="text" #id placeholder="Identification" class="form-control mb-2" required />
+  </div>
+
+  <div class="mat-form-field w-100">
+    <mat-label>First Name</mat-label>
+    <input matInput type="text" #firstName placeholder="First Name" class="form-control mb-2" required />
+  </div>
+
+  <div class="mat-form-field w-100">
+    <mat-label>Last Name</mat-label>
+    <input matInput type="text" #lastName placeholder="Last Name" class="form-control mb-2" required />
+  </div>
+
+  <div class="mat-form-field w-100">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" #email placeholder="Email" class="form-control mb-2" required />
+  </div>
+
+  <div class="mat-form-field w-100">
+    <mat-label>Phone</mat-label>
+    <input matInput type="tel" #phone placeholder="Phone" class="form-control mb-2" required />
+  </div>
+
+    <div class="mat-form-field w-100">
+      <mat-label>Customer Type</mat-label>
+      <mat-select #customerType required>
+        @for (type of customerTypes; track type) {
+          <mat-option [value]="type">{{ type.typeName }}</mat-option>
+        }
+      </mat-select>
+    </div>
+
+  <button mat-raised-button color="primary" class="w-100" type="submit">Add Customer</button>
+</form>
