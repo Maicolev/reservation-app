@@ -205,6 +205,12 @@ spring:
 5. Prueba la API con una herramienta como Postman, Thunderclient para VScode o cURL.
 
 ---
+
+## Posibles errores
+
+Habilitar el annotation processing en intellij o se puede quitar el Lombok del desarrollo si presenta inconvenientes por bug o cambio de configuración en intellij, eliminar los annotationProcessor y librerías de lombok en el Build.gradle
+
+---
 ## License
 
 Maicol Orejuela.
