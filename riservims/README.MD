@@ -1,7 +1,7 @@
 
 # Aplicación de Gestión de Reservas
 
-Este es un servicio de gestión de reservas que permite a los usuarios crear, consultar y actualizar reservas en un sistema de restaurante. La aplicación está construida (esta y seguirá en construcción mejor dicho 😄  ) usando **Spring Boot** y **MySQL** como base de datos, y está diseñada para interactuar con un frontend en **Angular**.
+Este es un servicio de gestión de reservas que permite a los usuarios crear, consultar y actualizar reservas en un sistema de restaurante. La aplicación está construida (está y seguirá en construcción mejor dicho 😄  ) usando **Spring Boot** y **MySQL** como base de datos, y está diseñada para interactuar con un frontend en **Angular**.
 
 ## Endpoints de la API
 
