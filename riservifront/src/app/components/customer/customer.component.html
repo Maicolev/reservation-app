@@ -12,7 +12,12 @@
   </div>
 
 <!-- Formulario para agregar un cliente -->
-<form (submit)="addCustomer(firstName.value, lastName.value, email.value, phone.value, customerType.value)" class="mat-elevation-z8 p-3" style="background-color: #f5f5f5; border-radius: 8px;">
+<form (submit)="addCustomer(id.value, firstName.value, lastName.value, email.value, phone.value, customerType.value)" class="mat-elevation-z8 p-3" style="background-color: #f5f5f5; border-radius: 8px;">
+  <div class="mat-form-field w-100">
+    <mat-label>Identification</mat-label>
+    <input matInput type="text" #id placeholder="Identification" class="form-control mb-2" required />
+  </div>
+
   <div class="mat-form-field w-100">
     <mat-label>First Name</mat-label>
     <input matInput type="text" #firstName placeholder="First Name" class="form-control mb-2" required />

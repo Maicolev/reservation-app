@@ -16,7 +16,8 @@ export class CustomerService {
   }
 
   createCustomer(customer: Customer): Observable<Customer> {
-    console.log('service' + customer.email)
+    alert(customer.id);
+    console.log('service' + customer.id)
     return this.http.post<Customer>(this.apiUrl, customer);
   }
 }

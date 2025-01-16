@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
+import { RouterOutlet } from '@angular/router';
 import { Customer } from '../../models/customer.model';
 import { CustomerType } from '../../models/customertype.model';
 
@@ -12,7 +13,6 @@ import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-customer',
-  standalone: true,
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -60,14 +60,15 @@ export class CustomerComponent {
     ];
   }
 
-  addCustomer(firstName: string, lastName: string, email: string, phoneNumber: string, customerType: CustomerType) {
-    this.newCustomer = { firstName, lastName, email, phoneNumber, customerType} as Customer;
+  addCustomer(id: string, firstName: string, lastName: string, email: string, phoneNumber: string, customerType: CustomerType) {
+    this.newCustomer = { id, firstName, lastName, email, phoneNumber, customerType} as Customer;
     console.log('addCustomer');
+    console.log(this.newCustomer);
+    alert('aaa');
     console.log(this.customers);
     this.customerService.createCustomer(this.newCustomer).subscribe(() => {
     this.fetchCustomers();
     //this.newCustomer = { firstName: '', lastName: '', email: '', phoneNumber: '', customerType: '' };
     });
-    alert(this.newCustomer.email);
   }
 }
