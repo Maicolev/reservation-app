@@ -41,6 +41,9 @@ Este proyecto abarca tanto el desarrollo del backend como del frontend de un sis
 1. Clona el repositorio y configura la base de datos MySQL.
 2. Modifica el archivo `application.yml` con tus credenciales de base de datos.
 3. Ejecuta el servicio: `gradle build`
+   * Accede a la aplicación en http://localhost:8080
    * Prueba los endpoints con una herramienta como Postman Thunderclient o por curl.
 
 ## Este archivo README proporciona una visión general del proyecto y guía a los desarrolladores en la configuración y ejecución de la aplicación.
+
+By Maicol Orejuela
