@@ -199,6 +199,7 @@ spring:
 
 1. Clona el repositorio en tu máquina local.
 2. Configura tu base de datos MySQL.
+  2.1. Ejecutar script de bd para creación de tablas, index y store procedure, entre otros elementos necesarios
 3. Modifica el archivo `application.yml` con los detalles correctos de tu base de datos.
 4. Ejecuta la aplicación con `gradle:build`.
 5. Prueba la API con una herramienta como Postman, Thunderclient para VScode o cURL.

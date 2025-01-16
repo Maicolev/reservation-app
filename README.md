@@ -44,6 +44,10 @@ Este proyecto abarca tanto el desarrollo del backend como del frontend de un sis
    * Accede a la aplicación en http://localhost:8080
    * Prueba los endpoints con una herramienta como Postman Thunderclient o por curl.
 
+### BD
+1. Ejecutar script de bd para creación de tablas, index y store procedure, entre otros elementos necesarios
+
+
 ## Este archivo README proporciona una visión general del proyecto y guía a los desarrolladores en la configuración y ejecución de la aplicación.
 
 By Maicol Orejuela
