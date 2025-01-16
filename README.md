@@ -25,7 +25,7 @@ Este proyecto abarca tanto el desarrollo del backend como del frontend de un sis
   * API RESTful para gestionar reservas.
   * Conexión a base de datos MySQL.
   * Controladores y servicios para manejar las operaciones CRUD.
-  * [Ir al README del backend](riservims/README.md)
+  * [Ir al README del backend](riservims/README.MD)
  
 * **BD (MYSQL)**
   
