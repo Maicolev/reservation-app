@@ -24,6 +24,11 @@ Este proyecto abarca tanto el desarrollo del backend como del frontend de un sis
   * API RESTful para gestionar reservas.
   * Conexión a base de datos MySQL.
   * Controladores y servicios para manejar las operaciones CRUD.
+ 
+* **BD (MYSQL)
+  
+![Untitled](https://github.com/user-attachments/assets/41960770-2e92-4143-99e2-c84331297250)
+
 
 ## Repositorios
 * **Frontend:** Riservifront
@@ -49,5 +54,14 @@ Este proyecto abarca tanto el desarrollo del backend como del frontend de un sis
 
 
 ## Este archivo README proporciona una visión general del proyecto y guía a los desarrolladores en la configuración y ejecución de la aplicación.
+
+## Decisiones:
+ Indices en la base de datos para mejorar los consultas, (Nota: no olvidar correr estadisticas para mejorar que el motor cree su roadmap o diccionario para los indices)
+ Decidi que los horarios se manejarian insertando con llave unica cada vez que se crean
+  Ejemplo del formato 1501202511 - esto seria el 15 de enero del 2025 a las 11, el usuario reservara solo en horas en punto y por una hora, es una decisión loca y rara pero se me 
+  ocurrio probarla y con un poco mas de refinamiento quizas se vea mas interesante, problemas: solo se puede reservar en horario en punto porque si se pone minutos habria que   añadir mas logica y también añadir horario por mesa o por capacidad de gente, ventajas no tengo que poblar la base de datos con registros no ocupados.
+
+  la logica decidi manejarla por base de datos, por eso el store procedure que valida si hay horarios disponibles y si no los crea y lo mismo para los clientes, si no existe lo crea de una vez, queria aprovechar para dejar el ms mas limpio ya que el resto del crud que es mas sencillo nos ayuda spring boot sin problema.
+
 
 By Maicol Orejuela
