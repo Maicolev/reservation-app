@@ -204,6 +204,6 @@ spring:
 5. Prueba la API con una herramienta como Postman, Thunderclient para VScode o cURL.
 
 ---
-
+## License
 
 Maicol Orejuela.

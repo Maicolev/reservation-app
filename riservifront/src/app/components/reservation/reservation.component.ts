@@ -45,29 +45,26 @@ export class ReservationComponent {
 
   constructor(private reservationService: ReservationService) {}
 
-  // Método para generar el ID del schedule con el formato ddMMyyyyHH
+  // Method to generate id
   generateScheduleId() {
-    const startTime = this.reservationRequest.reservation.schedule.startTime; // Suponiendo que startTime tiene el formato 'HH:mm'
-    const scheduleDate = new Date(this.reservationRequest.reservation.schedule.scheduleDate); // Asegúrate de que esta fecha esté bien formateada (puede venir como string)
+    const startTime = this.reservationRequest.reservation.schedule.startTime;
+    const scheduleDate = new Date(this.reservationRequest.reservation.schedule.scheduleDate);
 
-    // Obtener día, mes, año, hora
     const day = scheduleDate.getDate().toString().padStart(2, '0');
-    const month = (scheduleDate.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript empiezan desde 0
+    const month = (scheduleDate.getMonth() + 1).toString().padStart(2, '0');
     const year = scheduleDate.getFullYear();
 
-    const hours = startTime.split(':')[0]; // Solo obtener la hora de startTime, ignorando los minutos
+    const hours = startTime.split(':')[0];
 
-    // Formar el ID en el formato ddMMyyyyHH
+    // Format ddMMyyyyHH
     return `${day}${month}${year}${hours}`;
   }
 
   createReservation() {
-    // Convertir scheduleDate y startTime en un objeto Date
     //const scheduleDate = new Date(this.reservationRequest.reservation.schedule.scheduleDate);
     //const startTimeParts = this.reservationRequest.reservation.schedule.startTime.split(':');
     //const startDateTime = new Date(scheduleDate.setHours(parseInt(startTimeParts[0]), parseInt(startTimeParts[1]), 0, 0));
 
-    // Generar el ID para el schedule antes de enviar el formulario
     this.reservationRequest.reservation.schedule.id = Number(this.generateScheduleId());
 
     console.log(this.reservationRequest);

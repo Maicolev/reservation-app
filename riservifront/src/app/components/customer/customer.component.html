@@ -1,9 +1,6 @@
 <div class="container">
-  <!-- Título -->
   <h2 class="mat-headline text-center">Customers</h2>
 
-
-    <!-- Lista de clientes -->
     <ul class="mat-elevation-z8 mt-4">
       @for(customer of customers; track customer){
         <li class="list-group-item mat-list-item">{{ customer.firstName }} {{ customer.lastName }} - {{ customer.email }}</li>
@@ -11,7 +8,6 @@
     </ul>
   </div>
 
-<!-- Formulario para agregar un cliente -->
 <form (submit)="addCustomer(id.value, firstName.value, lastName.value, email.value, phone.value, customerType.value)" class="mat-elevation-z8 p-3" style="background-color: #f5f5f5; border-radius: 8px;">
   <div class="mat-form-field w-100">
     <mat-label>Identification</mat-label>
@@ -38,17 +34,14 @@
     <input matInput type="tel" #phone placeholder="Phone" class="form-control mb-2" required />
   </div>
 
-    <!-- Selección del tipo de cliente -->
     <div class="mat-form-field w-100">
       <mat-label>Customer Type</mat-label>
       <mat-select #customerType required>
-        <!-- Uso del ciclo for similar a como lo tienes en la lista de clientes -->
         @for (type of customerTypes; track type) {
           <mat-option [value]="type">{{ type.typeName }}</mat-option>
         }
       </mat-select>
     </div>
 
-  <!-- Botón -->
   <button mat-raised-button color="primary" class="w-100" type="submit">Add Customer</button>
 </form>

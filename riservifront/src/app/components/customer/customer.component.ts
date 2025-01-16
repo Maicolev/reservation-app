@@ -29,7 +29,7 @@ export class CustomerComponent {
   customers: Customer[] = [];
   newCustomer: Customer | undefined;
 
-  customerTypes: CustomerType[] = []; // Definir la propiedad customerTypes
+  customerTypes: CustomerType[] = [];
 
 
 
@@ -52,11 +52,9 @@ export class CustomerComponent {
   }
 
   ngOnInit(): void {
-    // Aquí debes llenar la propiedad customerTypes, por ejemplo con un servicio que haga una petición HTTP
     this.customerTypes = [
       { id: 1, typeName: 'Regular', monthlyFee: 0, discountPercentage: 0},
       { id: 2, typeName: 'Premium', monthlyFee: 50, discountPercentage: 10},
-      // Agrega más tipos de clientes según corresponda
     ];
   }
 
