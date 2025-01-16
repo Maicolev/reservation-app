@@ -48,7 +48,7 @@ El proyecto interactúa con una API de backend que maneja la lógica del negocio
 1. Clonar este repositorio en tu máquina local:
 
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/Maicolev/reservation-app.git>
    cd <project-folder>
    ```
 
