@@ -1,9 +1,11 @@
 package riservims.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -28,8 +30,8 @@ public class Reservation {
     @JoinColumn(name = "reservation_type_id", nullable = false)
     private ReservationType reservationType;
 
-    @Column(name = "reservation_date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime reservationDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate reservationDate;
 
     @Column(name = "number_of_people", nullable = false)
     private Integer numberOfPeople;

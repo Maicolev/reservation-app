@@ -60,18 +60,15 @@ public class ReservationService {
         Reservation existingReservation = reservationRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
 
-        // Actualización de los datos de la reservación
         existingReservation.setNumberOfPeople(reservation.getNumberOfPeople());
         existingReservation.setReservationType(reservation.getReservationType());
 
-        // Actualización del cliente si es necesario
         if (customer != null) {
-            Customer existingCustomer = customerRepository.findById(customer.getId())
+            Customer existingCustomer = customerRepository.findById(Integer.valueOf(customer.getId()))
                     .orElseThrow(() -> new IllegalArgumentException("Customer not found with ID: " + customer.getId()));
             existingReservation.setCustomer(existingCustomer);
         }
 
-        // Actualización del horario si es necesario
         if (schedule != null) {
             Schedule existingSchedule = scheduleRepository.findById(schedule.getId())
                     .orElseThrow(() -> new IllegalArgumentException("Schedule not found with ID: " + schedule.getId()));
@@ -88,7 +85,6 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
 
-        // Liberar el horario al eliminar la reservación
         Schedule schedule = reservation.getSchedule();
         schedule.setIsAvailable(true);
         scheduleRepository.save(schedule);

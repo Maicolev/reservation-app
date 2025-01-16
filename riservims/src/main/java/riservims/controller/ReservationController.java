@@ -28,8 +28,8 @@ public class ReservationController {
 
     @PostMapping
     public ResponseEntity<ReservationResponse> createReservation(@RequestBody ReservationRequest request) {
-
-        Map<Integer, Double> mapResponse = reservationService.createReservation(request.getReservation(), request.getSchedule(), request.getCustomer());
+        log.info("Creating reservation: {}", request);
+        Map<Integer, Double> mapResponse = reservationService.createReservation(request.getReservation(), request.getReservation().getSchedule(), request.getReservation().getCustomer());
         Map.Entry<Integer, Double> entry = mapResponse.entrySet().iterator().next();
         Integer idReservation = entry.getKey();
         Double discount = entry.getValue();
@@ -53,7 +53,7 @@ public class ReservationController {
     public ResponseEntity<String> updateReservation(@PathVariable Integer id, @RequestBody ReservationRequest request) {
         log.info("Updating reservation with ID: {}", id);
         try {
-            reservationService.updateReservation(id, request.getReservation(), request.getSchedule(), request.getCustomer());
+            reservationService.updateReservation(id, request.getReservation(), request.getReservation().getSchedule(), request.getReservation().getCustomer());
             return ResponseEntity.ok("Reservation updated successfully.");
         } catch (Exception e) {
             log.error("Error updating reservation: {}", e.getMessage());

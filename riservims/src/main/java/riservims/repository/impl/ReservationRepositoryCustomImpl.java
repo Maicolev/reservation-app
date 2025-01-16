@@ -30,7 +30,7 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("create_reservation_v2");
 
         // set into parameter
-        query.registerStoredProcedureParameter("p_customer_id", Integer.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("p_customer_id", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("p_first_name", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("p_last_name", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("p_email", String.class, ParameterMode.IN);
