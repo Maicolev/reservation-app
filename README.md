@@ -20,11 +20,12 @@ Este proyecto abarca tanto el desarrollo del backend como del frontend de un sis
   * Gestión de clientes.
   * Gestión de reservas.
   * Interacción con el backend a través de una API REST.
-  * [Ir al README del front](riservifront/README.md)
+  * [Ir al README del frontend](riservifront/README.md)
 * **Backend (Spring Boot):**
   * API RESTful para gestionar reservas.
   * Conexión a base de datos MySQL.
   * Controladores y servicios para manejar las operaciones CRUD.
+  * * [Ir al README del backend](README.md)
  
 * **BD (MYSQL)
   
