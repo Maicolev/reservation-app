@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import riservims.model.Customer;
 import riservims.repository.CustomerRepository;
-import riservims.repository.CustomerTypeRepository;
 
 import java.util.List;
 
@@ -12,16 +11,18 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final CustomerTypeRepository customerTypeRepository;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository, CustomerTypeRepository customerTypeRepository) {
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.customerTypeRepository = customerTypeRepository;
     }
 
     public Customer saveCustomer(Customer customer) {
-        return customerRepository.save(customer);
+
+        if(customerRepository.findByEmail(customer.getEmail()).isEmpty()) {
+            return customerRepository.save(customer);
+        }
+        return null;
     }
 
     public List<Customer> getAllCustomers() {

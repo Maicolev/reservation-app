@@ -36,7 +36,7 @@ public class ReservationController {
 
         if (Double.compare(discount, -2.0) == 0) {
             ReservationResponse reservationResponse = new ReservationResponse(0, 0.0, "Reservation failed - schedule does not available");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(reservationResponse);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(reservationResponse);
         }
         ReservationResponse reservationResponse = new ReservationResponse(idReservation, discount, "Reservation created successfully");
         return ResponseEntity.status(HttpStatus.CREATED).body(reservationResponse);
