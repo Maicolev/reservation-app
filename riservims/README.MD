@@ -1,7 +1,6 @@
-
 # Aplicación de Gestión de Reservas
 
-Este es un servicio de gestión de reservas que permite a los usuarios crear, consultar y actualizar reservas en un sistema de restaurante. La aplicación está construida (está y seguirá en construcción mejor dicho 😄  ) usando **Spring Boot** y **MySQL** como base de datos, y está diseñada para interactuar con un frontend en **Angular**.
+Este es un servicio de gestión de reservas que permite a los usuarios crear, consultar y actualizar reservas en un sistema de restaurante. La aplicación está construida (esta y seguirá en construcción mejor dicho 😄 ) usando **Spring Boot** y **MySQL** como base de datos, y está diseñada para interactuar con un frontend en **Angular**.
 
 ## Endpoints de la API
 
@@ -70,7 +69,7 @@ GET http://localhost:8080/api/reservations
     "id": 1,
     "customer": {
       "id": 111234567,
-      "firstName": "Rodolgo",
+      "firstName": "Rodolfo",
       "lastName": "Perez",
       "email": "r.peredssz@example.com",
       "phoneNumber": "+573201234567",
@@ -152,6 +151,81 @@ PUT http://localhost:8080/api/reservations/1
 
 ---
 
+### **4. Crear un cliente**
+Para registrar un nuevo cliente, se debe enviar una solicitud POST al siguiente endpoint:
+
+```
+POST http://localhost:8080/api/customers
+```
+
+### **Cuerpo de la solicitud (JSON)**
+
+```json
+{
+  "id": "123456",
+  "firstName": "Camila",
+  "lastName": "Bolaños",
+  "email": "cami.boe@example.com",
+  "phoneNumber": "6666",
+  "customerType": {
+    "id": 1
+  }
+}
+```
+
+### **Respuesta esperada (JSON)**
+
+```json
+{
+  "id": "123456",
+  "firstName": "Camila",
+  "lastName": "Bolaños",
+  "email": "cami.boe@example.com",
+  "phoneNumber": "6666",
+  "customerType": {
+    "id": 1
+  }
+}
+```
+
+---
+
+### **5. Consultar todos los clientes**
+Para consultar todos los clientes registrados, envía una solicitud GET al siguiente endpoint:
+
+```
+GET http://localhost:8080/api/customers
+```
+
+### **Respuesta esperada (JSON)**
+
+```json
+[
+  {
+    "id": "123456",
+    "firstName": "Camila",
+    "lastName": "Bolaños",
+    "email": "cami.boe@example.com",
+    "phoneNumber": "6666",
+    "customerType": {
+      "id": 1
+    }
+  },
+  {
+    "id": "7891011",
+    "firstName": "Rodolfo",
+    "lastName": "Perez",
+    "email": "rodolfo@example.com",
+    "phoneNumber": "5555",
+    "customerType": {
+      "id": 2
+    }
+  }
+]
+```
+
+---
+
 ## Configuración de la base de datos
 
 A continuación se muestra la configuración de la base de datos para conectarse a MySQL en el archivo `application.yml` de Spring Boot:
@@ -199,9 +273,9 @@ spring:
 
 1. Clona el repositorio en tu máquina local.
 2. Configura tu base de datos MySQL.
-  2.1. Ejecutar script de bd para creación de tablas, index y store procedure, entre otros elementos necesarios
+   - 2.1. Ejecutar script de base de datos para creación de tablas, índices y procedimientos almacenados, entre otros elementos necesarios.
 3. Modifica el archivo `application.yml` con los detalles correctos de tu base de datos.
-4. Ejecuta la aplicación con `gradle:build`.
+4. Ejecuta la aplicación con `gradle build`.
 5. Prueba la API con una herramienta como Postman, Thunderclient para VScode o cURL.
 
 ---
