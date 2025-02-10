@@ -69,6 +69,6 @@ Este proyecto abarca tanto el desarrollo del backend como del frontend de un sis
   la lógica decidí manejarla por base de datos, por eso el store procedure que valida si hay horarios disponibles y si no los crea y lo mismo para los clientes, si no existe lo crea de una vez, quería aprovechar para dejar el ms mas limpio ya que el resto del crud que es mas sencillo nos ayuda spring boot sin problema.
 
 
-## License
+## 📄 Licencia
 
-Maicol Orejuela.
+MIT License © 2024 [Maicol Orejuela]
